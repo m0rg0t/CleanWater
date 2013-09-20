@@ -15,11 +15,12 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="cleanwater.App">
-      <VisualElements DisplayName="cleanwater" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="cleanwater" ForegroundText="light" BackgroundColor="#464646" ToastCapable="true">
+      <VisualElements DisplayName="Вода в Москве" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="Вода в Москве" ForegroundText="light" BackgroundColor="#464646" ToastCapable="true">
         <DefaultTile ShowName="allLogos" />
         <SplashScreen Image="Assets\SplashScreen.png" />
         <InitialRotationPreference>
           <Rotation Preference="landscape" />
+          <Rotation Preference="landscapeFlipped" />
         </InitialRotationPreference>
       </VisualElements>
     </Application>

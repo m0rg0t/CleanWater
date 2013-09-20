@@ -2,6 +2,8 @@ using GalaSoft.MvvmLight;
 using Microsoft.WindowsAzure.MobileServices;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Linq;
+using cleanwater.Common;
 
 namespace cleanwater.ViewModel
 {
@@ -67,9 +69,39 @@ namespace cleanwater.ViewModel
         public WaterItem CurrentItem
         {
             get { return _currentItem; }
-            set { _currentItem = value; }
+            set { 
+                _currentItem = value;
+                RaisePropertyChanged("Items");
+            }
         }
-        
+
+        private WaterItem _currentRegionItem;
+        /// <summary>
+        /// Текущий элемент
+        /// </summary>
+        public WaterItem CurrentRegionItem
+        {
+            get { return _currentRegionItem; }
+            set
+            {
+                _currentRegionItem = value;
+                RaisePropertyChanged("CurrentRegionItem");
+            }
+        }
+
+        private ObservableCollection<RegionWaterItem> _regionItems;
+        /// <summary>
+        /// 
+        /// </summary>
+        public ObservableCollection<RegionWaterItem> RegionItems
+        {
+            get { return _regionItems; }
+            set { 
+                _regionItems = value;
+                RaisePropertyChanged("RegionItems");
+            }
+        }
+                
 
         private MobileServiceCollection<WaterItem, WaterItem> parkItems;
         private IMobileServiceTable<WaterItem> WaterTable = App.MobileService.GetTable<WaterItem>();
@@ -77,8 +109,24 @@ namespace cleanwater.ViewModel
         public async Task<bool> LoadData()
         {
             this.Loading = true;
-            Items = await WaterTable.ToCollectionAsync();
+
+            Items = new ObservableCollection<WaterItem>(await WaterTable.GetAllAsync());
+            //Items = await WaterTable.IncludeTotalCount().ToCollectionAsync(1300); //.ToCollectionAsync(900);
             RaisePropertyChanged("Items");
+
+            this.RegionItems = new ObservableCollection<RegionWaterItem>();
+            var ItemsInGroup = from b in this.Items
+                                    group b by b.Regname into g
+                                    select g;
+            foreach (var reg in ItemsInGroup)
+            {
+                var i = reg;
+                var regItem = new RegionWaterItem();
+                regItem.Title = reg.Key.ToString();
+                regItem.Items = new ObservableCollection<WaterItem>(reg.ToList<WaterItem>());
+                this.RegionItems.Add(regItem);
+            };
+
             this.Loading = false;
 
             return true;
