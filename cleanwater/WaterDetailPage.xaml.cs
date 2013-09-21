@@ -51,7 +51,7 @@ namespace cleanwater
             try
             {
                 var item = ViewModelLocator.MainStatic.RegionItems.FirstOrDefault(c => c.Code == (String)navigationParameter);
-                this.DefaultViewModel["Group"] = "Участковые";
+                this.DefaultViewModel["Group"] = "Качество воды";
                 this.DefaultViewModel["Items"] = ViewModelLocator.MainStatic.RegionItems;
 
                 this.flipView.SelectedItem = item;

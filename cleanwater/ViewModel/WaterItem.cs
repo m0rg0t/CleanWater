@@ -46,7 +46,10 @@ namespace cleanwater.ViewModel
         public string Code
         {
             get { return _code; }
-            set { _code = value; }
+            set { 
+                _code = value;
+                RaisePropertyChanged("Code");
+            }
         }        
 
         private string _value;
@@ -56,9 +59,111 @@ namespace cleanwater.ViewModel
         public string Value
         {
             get { return _value; }
-            set { _value = value; }
+            set { 
+                _value = value;
+                RaisePropertyChanged("Value");
+                RaisePropertyChanged("MesureUnit");
+            }
         }
-        
+
+        /// <summary>
+        /// Единицы измерения
+        /// </summary>
+        public string MesureUnit
+        {
+            private set
+            {
+            }
+            get
+            {
+                string outValue = "";
+                switch (this.Ind_name.Trim())
+                {
+                    case "Общие колиформные бактерии (ОКБ)":
+                        outValue = "КОЕ/100мл";
+                        break;
+                    case "Запах при 60C":
+                        outValue = "баллы";
+                        break;
+                    case "Остаточный хлор":
+                        outValue = "мг/дм³";
+                        break;
+                    case "Общее микробное число (ОМЧ)":
+                        outValue = "кол. в 1 мл";
+                        break;
+                    case "Термотолерантные колиформные бактерии (ТКБ)":
+                        outValue = "КОЕ/100мл";
+                        break;
+                    case "Железо общее":
+                        outValue = "мг/дм³";
+                        break;                        
+                    case "Водородный показатель (pH)":
+                        outValue = "ед. pH";
+                        break;
+                    case "Мутность":
+                        outValue = "мг/дм³";
+                        break;
+                    case "Цветность":
+                        outValue = "градус";
+                        break;
+                    case "Запах при 20C":
+                        outValue = "баллы";
+                        break;
+                    default:
+                        outValue = "";
+                        break;
+                };
+                return outValue;
+            }
+        }
+
+        public string NormalValue
+        {
+            private set
+            {
+            }
+            get
+            {
+                string outValue = "";
+                switch (this.Ind_name.Trim())
+                {
+                    case "Общие колиформные бактерии (ОКБ)":
+                        outValue = "отсутствие";
+                        break;
+                    case "Запах при 60C":
+                        outValue = "не более 2";
+                        break;
+                    case "Остаточный хлор":
+                        outValue = "не нормируется";
+                        break;
+                    case "Общее микробное число (ОМЧ)":
+                        outValue = "не более 50";
+                        break;
+                    case "Термотолерантные колиформные бактерии (ТКБ)":
+                        outValue = "отсутствие";
+                        break;
+                    case "Железо общее":
+                        outValue = "не более 0,3";
+                        break;
+                    case "Водородный показатель (pH)":
+                        outValue = "в пределах 6,0-9,0";
+                        break;
+                    case "Мутность":
+                        outValue = "не более 1,5";
+                        break;
+                    case "Цветность":
+                        outValue = "не более 20";
+                        break;
+                    case "Запах при 20C":
+                        outValue = "не более 2";
+                        break;
+                    default:
+                        outValue = "";
+                        break;
+                };
+                return outValue;
+            }
+        }
 
         private string _ind_id;
         /// <summary>
@@ -93,7 +198,10 @@ namespace cleanwater.ViewModel
         public string Regname
         {
             get { return _regname; }
-            set { _regname = value; }
+            set { 
+                _regname = value;
+                RaisePropertyChanged("Regname");
+            }
         }
         
         

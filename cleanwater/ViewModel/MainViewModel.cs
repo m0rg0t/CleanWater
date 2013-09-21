@@ -14,6 +14,7 @@ using System.IO;
 using Newtonsoft.Json.Linq;
 using System.Net.Http;
 using Windows.Devices.Geolocation;
+using Windows.UI.Xaml;
 
 namespace cleanwater.ViewModel
 {
@@ -56,6 +57,37 @@ namespace cleanwater.ViewModel
             set { 
                 _loading = value;
                 RaisePropertyChanged("Loading");
+                RaisePropertyChanged("IsLoaded");
+                RaisePropertyChanged("LoadingVisibility");
+            }
+        }
+
+        public bool IsLoaded
+        {
+            private set
+            {
+            }
+            get
+            {
+                return !Loading;
+            }
+        }
+
+        public Visibility LoadingVisibility
+        {
+            get
+            {
+                if (IsLoaded)
+                {
+                    return Visibility.Visible;
+                }
+                else
+                {
+                    return Visibility.Collapsed;
+                };
+            }
+            private set
+            {
             }
         }
 

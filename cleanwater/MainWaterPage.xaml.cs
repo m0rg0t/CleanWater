@@ -96,5 +96,11 @@ namespace cleanwater
             }
             catch { };
         }
+
+        private void CurrentParamsDataGrid_DataBindingComplete(object sender, Telerik.UI.Xaml.Controls.Grid.DataBindingCompleteEventArgs e)
+        {
+            //this.CurrentParamsDataGrid.Columns.Remove(this.CurrentParamsDataGrid.Columns.FirstOrDefault(c => c.Header == "Id"));
+            //this.CurrentParamsDataGrid.Columns.Remove(this.CurrentParamsDataGrid.Columns.FirstOrDefault(c => c.Header == "Code"));
+        }
     }
 }

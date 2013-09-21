@@ -315,6 +315,18 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Net.Http.2.2.13\lib\win8\System.Net.Http.Primitives.dll</HintPath>
     </Reference>
+    <Reference Include="Telerik.Core">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Telerik\RadControls for Windows 8 XAML Q2 2013\Binaries\Core\Telerik.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.UI.Xaml.Grid">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Telerik\RadControls for Windows 8 XAML Q2 2013\Binaries\Grid\Telerik.UI.Xaml.Grid.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.UI.Xaml.Input">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Telerik\RadControls for Windows 8 XAML Q2 2013\Binaries\Input\Telerik.UI.Xaml.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.UI.Xaml.Primitives">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Telerik\RadControls for Windows 8 XAML Q2 2013\Binaries\Primitives\Telerik.UI.Xaml.Primitives.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\all.csv" />
