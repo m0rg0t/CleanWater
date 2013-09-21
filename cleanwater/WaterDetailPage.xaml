@@ -55,9 +55,32 @@
                         События Loaded/unloaded явным образом подписываются на обновления состояний представления страницы
                     -->
                     <UserControl Loaded="StartLayoutUpdates" Unloaded="StopLayoutUpdates">
-                        <ScrollViewer x:Name="scrollViewer" Style="{StaticResource HorizontalScrollViewerStyle}" Grid.Row="1">
 
-                            <!-- Содержимое может занимать столько столбцов, сколько потребуется -->
+                        <StackPanel Width="480" Margin="0,4,14,0" VerticalAlignment="Top">
+                            <TextBlock Text="{Binding Title}" 
+                               Margin="0,0,18,20" Name="CurrentDistrictTitle" 
+                               Style="{StaticResource SubheaderTextStyle}" MaxHeight="60"/>
+                            <!--<TextBlock Text="Ваше местонахождение" Margin="0,0,18,20" Name="MapTitle" 
+                               Style="{StaticResource SubheaderTextStyle}" MaxHeight="60"/>-->
+                            <!--<bm:Map x:Name="map" MinHeight="300"
+						        Credentials="AleF-exBAWd-gM9i3JJ0yWTEBsTGK2cHob09pmgpnHc5MCl3XjMhWToUK6MlmgFx" 
+						        ZoomLevel="10" Heading="14">
+                                <bm:Map.Center>
+                                    <bm:Location Longitude="37.625911" Latitude="55.775039"/>
+                                </bm:Map.Center>
+                            </bm:Map>-->
+
+                            <ListView
+                            TabIndex="1" Name="CurrentWaterParams"
+                            Margin="0,20,0,0"
+                            ItemsSource="{Binding Items}" 
+                            ItemTemplate="{StaticResource WaterParamsTeplateTemplate}"
+                            SelectionMode="None"
+                            IsSwipeEnabled="false"/>
+                        </StackPanel>
+
+                        <!--<ScrollViewer x:Name="scrollViewer" Style="{StaticResource HorizontalScrollViewerStyle}" Grid.Row="1">
+
                             <common:RichTextColumns x:Name="richTextColumns" Margin="117,0,117,47">
                                 <RichTextBlock x:Name="richTextBlock" Width="560" Style="{StaticResource ItemRichTextStyle}" IsTextSelectionEnabled="False">
                                     <Paragraph>
@@ -74,9 +97,7 @@
                                     <Paragraph>
                                         <Run FontWeight="SemiLight" Text="{Binding Content}"/>
                                     </Paragraph>
-                                </RichTextBlock>
-
-                                <!-- На основании этого шаблона создаются дополнительные столбцы -->
+                                </RichTextBlock>                                
                                 <common:RichTextColumns.ColumnTemplate>
                                     <DataTemplate>
                                         <RichTextBlockOverflow Width="560" Margin="80,0,0,0">
@@ -89,13 +110,12 @@
                             </common:RichTextColumns>
 
                             <VisualStateManager.VisualStateGroups>
-
-                                <!-- Состояния отображения определяют состояние представления приложения внутри FlipView -->
+                               
                                 <VisualStateGroup x:Name="ApplicationViewStates">
                                     <VisualState x:Name="FullScreenLandscape"/>
                                     <VisualState x:Name="Filled"/>
 
-                                    <!-- Учитывайте принятое соглашение о более узких полях (100 пикселей) для книжного представления -->
+                                    
                                     <VisualState x:Name="FullScreenPortrait">
                                         <Storyboard>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="richTextColumns" Storyboard.TargetProperty="Margin">
@@ -106,8 +126,7 @@
                                             </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualState>
-
-                                    <!-- В прикрепленном состоянии содержимое переформатируется и проматывается вертикально -->
+                                  
                                     <VisualState x:Name="Snapped">
                                         <Storyboard>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="richTextColumns" Storyboard.TargetProperty="Margin">
@@ -126,7 +145,7 @@
                                     </VisualState>
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
-                        </ScrollViewer>
+                        </ScrollViewer>-->
                     </UserControl>
                 </DataTemplate>
             </FlipView.ItemTemplate>

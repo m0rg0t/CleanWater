@@ -1,5 +1,6 @@
 ﻿using Callisto.Controls;
 using cleanwater.Controls;
+using cleanwater.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -46,6 +47,16 @@ namespace cleanwater
             {
                 navigationParameter = pageState["SelectedItem"];
             }
+
+            try
+            {
+                var item = ViewModelLocator.MainStatic.RegionItems.FirstOrDefault(c => c.Code == (String)navigationParameter);
+                this.DefaultViewModel["Group"] = "Участковые";
+                this.DefaultViewModel["Items"] = ViewModelLocator.MainStatic.RegionItems;
+
+                this.flipView.SelectedItem = item;
+            }
+            catch { };
 
             // TODO: Присвоить this.DefaultViewModel["Group"] связываемую группу
             // TODO: Присвоить this.DefaultViewModel["Items"] коллекцию связываемых элементов

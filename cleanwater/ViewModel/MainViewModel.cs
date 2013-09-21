@@ -11,6 +11,9 @@ using System.Collections.Generic;
 using System.Data.Services.Client;
 using System.Net;
 using System.IO;
+using Newtonsoft.Json.Linq;
+using System.Net.Http;
+using Windows.Devices.Geolocation;
 
 namespace cleanwater.ViewModel
 {
@@ -113,10 +116,48 @@ namespace cleanwater.ViewModel
         private MobileServiceCollection<WaterItem, WaterItem> parkItems;
         private IMobileServiceTable<WaterItem> WaterTable = App.MobileService.GetTable<WaterItem>();
 
-        
-        public void LoadRegionImage(string regionName="")
+        public async Task<string> MakeWebRequest(string url = "")
         {
+            HttpClient http = new System.Net.Http.HttpClient();
+            HttpResponseMessage response = await http.GetAsync(url);
+            return await response.Content.ReadAsStringAsync();
         }
+
+        public async void GetPlaceInfo(double lat, double lon)
+        {
+            var roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
+            //if (roamingSettings.Values["street"].ToString() == "")
+            //{
+            var responseText = await MakeWebRequest("http://geocode-maps.yandex.ru/1.x/?geocode=" + lon.ToString().Replace(",", ".") + "," + lat.ToString().Replace(",", ".") + "&kind=district&format=json");
+            try
+            {
+                JObject o = JObject.Parse(responseText.ToString());
+                string district_name = o["response"]["GeoObjectCollection"]["featureMember"][0]["GeoObject"]["metaDataProperty"]["GeocoderMetaData"]["AddressDetails"]["Country"]["Locality"]["DependentLocality"]["DependentLocalityName"].ToString();
+                CurrentDistrict = district_name;
+                //ViewModelLocator.MainStatic.Street = road;
+                //ViewModelLocator.MainStatic.Town = town;
+            }
+            catch
+            {
+            };
+            //};
+        }
+        public double Latitued = 55.758;
+        public double Longitude = 37.611;
+
+        private string _currentDistrict;
+        /// <summary>
+        /// 
+        /// </summary>
+        public string CurrentDistrict
+        {
+            get { return _currentDistrict; }
+            set { 
+                _currentDistrict = value;
+                RaisePropertyChanged("CurrentDistrict");
+            }
+        }
+        
 
         public async Task<bool> LoadData()
         {
@@ -126,6 +167,7 @@ namespace cleanwater.ViewModel
             //Items = await WaterTable.IncludeTotalCount().ToCollectionAsync(1300); //.ToCollectionAsync(900);
             
             this.Items = new ObservableCollection<WaterItem>();
+            this.CurrentRegionItem = null;
             foreach (var item in initItems)
             {
                 if (item.Ind_name.Split(' ')[0].ToString()!="Неизвестно")
@@ -134,6 +176,19 @@ namespace cleanwater.ViewModel
                 };
             }; 
             RaisePropertyChanged("Items");
+
+            try
+            {
+                var geolocator = new Geolocator();
+                Geoposition position = await geolocator.GetGeopositionAsync();
+                var str = position.ToString();
+                Latitued = position.Coordinate.Latitude;
+                Longitude = position.Coordinate.Longitude;
+                GetPlaceInfo(Latitued, Longitude);
+            }
+            catch {
+                GetPlaceInfo(Latitued, Longitude);
+            };
 
             this.RegionItems = new ObservableCollection<RegionWaterItem>();
             var ItemsInGroup = from b in this.Items
@@ -152,10 +207,17 @@ namespace cleanwater.ViewModel
                 catch { };
                 regItem.Items = new ObservableCollection<WaterItem>(reg.ToList<WaterItem>());
                 this.RegionItems.Add(regItem);
+
+                    if (regItem.Title.Trim()==this.CurrentDistrict.Trim()) {
+                        this.CurrentRegionItem = regItem;
+                    };
+
                 } catch {};
             };
 
-            this.CurrentRegionItem = this.RegionItems.FirstOrDefault();
+            if (this.CurrentRegionItem==null) {
+                this.CurrentRegionItem = this.RegionItems.FirstOrDefault();
+            };
 
             this.Loading = false;
 

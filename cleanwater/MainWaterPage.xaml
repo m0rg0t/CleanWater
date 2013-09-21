@@ -13,13 +13,6 @@
 
     <Page.Resources>
 
-        <DataTemplate x:Key="WaterParamsTeplateTemplate">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{Binding Ind_name}"/>
-                <TextBlock Text="{Binding Value}"/>
-            </StackPanel>
-        </DataTemplate>
-
         <DataTemplate x:Key="WaterItemTemplate">
             <Grid Width="400" Height="250" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White">
                 <Border Background="White" BorderBrush="Gray" BorderThickness="2">
@@ -39,8 +32,8 @@
                             x:Name="WaterParamsTeplateTemplate"
                             AutomationProperties.Name="Items"
                             TabIndex="1"
-                            Margin="0,-10,0,0"
-                            Padding="10,0,0,60"
+                            Margin="0,10,0,0"
+                            Padding="10,0,0,30"
                             ItemsSource="{Binding Items}" 
                             ItemTemplate="{StaticResource WaterParamsTeplateTemplate}"
                             SelectionMode="None"
@@ -81,24 +74,26 @@
             ItemsSource="{Binding Source={StaticResource itemsViewSource}}"
             ItemTemplate="{StaticResource WaterRegionStandard250x250ItemTemplate}"
             SelectionMode="None"
-            IsSwipeEnabled="false" ItemClick="itemGridView_ItemClick">
+            IsSwipeEnabled="false" ItemClick="itemGridView_ItemClick" IsItemClickEnabled="True">
             <GridView.Header>
                 <StackPanel Width="480" Margin="0,4,14,0" VerticalAlignment="Top">
-                    <TextBlock Text="Ваше местонахождение" Margin="0,0,18,20" Name="MapTitle" 
+                    <TextBlock Text="{Binding Title}" 
+                               DataContext="{Binding MainStatic.CurrentRegionItem, Source={StaticResource Locator}}"
+                               Margin="0,0,18,20" Name="CurrentDistrictTitle" 
                                Style="{StaticResource SubheaderTextStyle}" MaxHeight="60"/>
-
-                    <bm:Map x:Name="map" MinHeight="300"
+                    <!--<TextBlock Text="Ваше местонахождение" Margin="0,0,18,20" Name="MapTitle" 
+                               Style="{StaticResource SubheaderTextStyle}" MaxHeight="60"/>-->
+                    <!--<bm:Map x:Name="map" MinHeight="300"
 						Credentials="AleF-exBAWd-gM9i3JJ0yWTEBsTGK2cHob09pmgpnHc5MCl3XjMhWToUK6MlmgFx" 
 						ZoomLevel="10" Heading="14">
                         <bm:Map.Center>
                             <bm:Location Longitude="37.625911" Latitude="55.775039"/>
                         </bm:Map.Center>
-                    </bm:Map>
+                    </bm:Map>-->
 
                     <ListView
                             TabIndex="1" Name="CurrentWaterParams"
-                            Margin="0,-10,0,0"
-                            Padding="10,0,0,60"
+                            Margin="0,20,0,0"
                             ItemsSource="{Binding Items}" 
                             DataContext="{Binding MainStatic.CurrentRegionItem, Source={StaticResource Locator}}"
                             ItemTemplate="{StaticResource WaterParamsTeplateTemplate}"

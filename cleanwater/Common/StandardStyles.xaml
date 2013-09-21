@@ -832,6 +832,14 @@
         </Grid>
     </DataTemplate>
 
+    <DataTemplate x:Key="WaterParamsTeplateTemplate">
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <TextBlock Text="{Binding Ind_name}"/>
+            <TextBlock Text=":"/>
+            <TextBlock Text="{Binding Value}" Margin="15,0,0,0"/>
+        </StackPanel>
+    </DataTemplate>
+
     <!-- Grid-appropriate 500 by 130 pixel item template as seen in the GroupDetailPage -->
     <DataTemplate x:Key="Standard500x130ItemTemplate">
         <Grid Height="110" Width="480" Margin="10">
