@@ -91,7 +91,7 @@ namespace cleanwater.ViewModel
             }
         }
 
-        private ObservableCollection<WaterItem> _items;
+        private ObservableCollection<WaterItem> _items = new ObservableCollection<WaterItem>();
         /// <summary>
         /// 
         /// </summary>

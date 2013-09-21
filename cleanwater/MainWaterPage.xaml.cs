@@ -30,7 +30,10 @@ namespace cleanwater
         {
             this.InitializeComponent();
 
-            ViewModelLocator.MainStatic.LoadData();
+            if (ViewModelLocator.MainStatic.Items.Count() < 1)
+            {
+                ViewModelLocator.MainStatic.LoadData();
+            };
         }
 
         /// <summary>

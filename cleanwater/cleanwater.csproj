@@ -16,6 +16,7 @@
     <RestorePackages>true</RestorePackages>
     <PackageCertificateThumbprint>357758A571695FF1030F579BE29087741BC35EBF</PackageCertificateThumbprint>
     <PackageCertificateKeyFile>cleanwater_StoreKey.pfx</PackageCertificateKeyFile>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
