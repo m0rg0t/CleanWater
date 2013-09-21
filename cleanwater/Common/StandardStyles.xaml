@@ -888,6 +888,19 @@
         </Grid>
     </DataTemplate>
 
+    <DataTemplate x:Key="WaterRegionStandard250x250ItemTemplate">
+        <Grid HorizontalAlignment="Left" Width="250" Height="250">
+            <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
+                <Image Source="{Binding Image}" Stretch="UniformToFill"/>
+            </Border>
+            <StackPanel MinHeight="80" VerticalAlignment="Bottom" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
+                <TextBlock Text="{Binding Title}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
+                                   Style="{StaticResource TitleTextStyle}" Margin="15,0,15,0"/>
+                <!--<TextBlock Text="{Binding Code}" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>-->
+            </StackPanel>
+        </Grid>
+    </DataTemplate>
+
     <!-- Grid-appropriate 300 by 70 pixel item template as seen in the SearchResultsPage -->
     <DataTemplate x:Key="StandardSmallIcon300x70ItemTemplate">
         <Grid Width="294" Margin="6">

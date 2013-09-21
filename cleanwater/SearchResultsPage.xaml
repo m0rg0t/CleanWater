@@ -60,7 +60,8 @@
                                 IsChecked="{Binding Active, Mode=TwoWay}"
                                 Checked="Filter_Checked"
                                 Style="{StaticResource TextRadioButtonStyle}">
-                                <TextBlock Text="{Binding Description}"  Margin="3,-7,3,10" Style="{StaticResource GroupHeaderTextStyle}" />
+                                <TextBlock Text="{Binding Description}"  Margin="3,-7,3,10" 
+                                           Style="{StaticResource GroupHeaderTextStyle}" />
                             </RadioButton>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
@@ -78,11 +79,11 @@
                     IsSwipeEnabled="false"
                     IsItemClickEnabled="True"
                     ItemsSource="{Binding Source={StaticResource resultsViewSource}}"
-                    ItemTemplate="{StaticResource StandardSmallIcon300x70ItemTemplate}">
+                    ItemTemplate="{StaticResource WaterRegionStandard250x250ItemTemplate}" ItemClick="resultsGridView_ItemClick">
                     
                     <GridView.ItemContainerStyle>
                         <Style TargetType="Control">
-                            <Setter Property="Height" Value="70"/>
+                            <Setter Property="Height" Value="250"/>
                             <Setter Property="Margin" Value="0,0,38,8"/>
                        </Style>
                     </GridView.ItemContainerStyle>
@@ -150,7 +151,7 @@
             Margin="120,50,0,0"
             Visibility="Collapsed"
             Style="{StaticResource SubheaderTextStyle}"
-            Text="No results match your search." />
+            Text="Не найдено подходящих результатов" />
 
         <VisualStateManager.VisualStateGroups>
 

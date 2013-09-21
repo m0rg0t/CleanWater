@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Callisto.Controls;
+using cleanwater.Controls;
+using cleanwater.ViewModel;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -6,6 +9,7 @@ using System.Linq;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.ApplicationSettings;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -27,6 +31,46 @@ namespace cleanwater
         public SearchResultsPage()
         {
             this.InitializeComponent();
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            SettingsPane.GetForCurrentView().CommandsRequested -= Settings_CommandsRequested;
+            base.OnNavigatedFrom(e);
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            SettingsPane.GetForCurrentView().CommandsRequested += Settings_CommandsRequested;
+            base.OnNavigatedTo(e);
+        }
+
+        void Settings_CommandsRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
+        {
+            try
+            {
+                var viewAboutPage = new SettingsCommand("", "Об авторе", cmd =>
+                {
+                    //(Window.Current.Content as Frame).Navigate(typeof(AboutPage));
+                    var settingsFlyout = new SettingsFlyout();
+                    settingsFlyout.Content = new About();
+                    settingsFlyout.HeaderText = "Об авторе";
+
+                    settingsFlyout.IsOpen = true;
+                });
+                args.Request.ApplicationCommands.Add(viewAboutPage);
+
+                var viewAboutMalukahPage = new SettingsCommand("", "Политика конфиденциальности", cmd =>
+                {
+                    var settingsFlyout = new SettingsFlyout();
+                    settingsFlyout.Content = new Privacy();
+                    settingsFlyout.HeaderText = "Политика конфиденциальности";
+
+                    settingsFlyout.IsOpen = true;
+                });
+                args.Request.ApplicationCommands.Add(viewAboutMalukahPage);
+            }
+            catch { };
         }
 
         /// <summary>
@@ -52,7 +96,14 @@ namespace cleanwater
             //       Filter_SelectionChanged.
 
             var filterList = new List<Filter>();
-            filterList.Add(new Filter("All", 0, true));
+            filterList.Add(new Filter("Все районы", 0, true));
+
+            this.DefaultViewModel["Results"] = (from item in ViewModelLocator.MainStatic.RegionItems
+                                                where
+                                                    (
+                                                    item.Title.ToLower().Contains(queryText.ToLower())
+                                                    )
+                                                select item).ToList<RegionWaterItem>();
 
             // Передавать результаты через модель представлений
             this.DefaultViewModel["QueryText"] = '\u201c' + queryText + '\u201d';
@@ -153,6 +204,16 @@ namespace cleanwater
             {
                 get { return String.Format("{0} ({1})", _name, _count); }
             }
+        }
+
+        private void resultsGridView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            try
+            {
+                var item = ((RegionWaterItem)e.ClickedItem);
+                this.Frame.Navigate(typeof(WaterDetailPage), item.Code.ToString());
+            }
+            catch { };
         }
     }
 }

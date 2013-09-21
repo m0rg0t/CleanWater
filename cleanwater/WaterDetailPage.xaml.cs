@@ -1,6 +1,5 @@
 ﻿using Callisto.Controls;
 using cleanwater.Controls;
-using cleanwater.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,21 +15,19 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// Шаблон элемента страницы элементов задокументирован по адресу http://go.microsoft.com/fwlink/?LinkId=234233
+// Шаблон элемента страницы сведений об элементе задокументирован по адресу http://go.microsoft.com/fwlink/?LinkId=234232
 
 namespace cleanwater
 {
     /// <summary>
-    /// Страница, на которой отображается коллекция эскизов элементов.  В приложении с разделением эта страница
-    /// служит для отображения и выбора одной из доступных групп.
+    /// Страница, на которой отображаются сведения об отдельном элементе внутри группы; при этом можно с помощью жестов
+    /// перемещаться между другими элементами из этой группы.
     /// </summary>
-    public sealed partial class MainWaterPage : cleanwater.Common.LayoutAwarePage
+    public sealed partial class WaterDetailPage : cleanwater.Common.LayoutAwarePage
     {
-        public MainWaterPage()
+        public WaterDetailPage()
         {
             this.InitializeComponent();
-
-            ViewModelLocator.MainStatic.LoadData();
         }
 
         /// <summary>
@@ -44,7 +41,15 @@ namespace cleanwater
         /// сеанса. Это значение будет равно NULL при первом посещении страницы.</param>
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
-            // TODO: Назначение привязываемой коллекции элементов объекту this.DefaultViewModel["Items"]
+            // Разрешение сохраненному состоянию страницы переопределять первоначально отображаемый элемент
+            if (pageState != null && pageState.ContainsKey("SelectedItem"))
+            {
+                navigationParameter = pageState["SelectedItem"];
+            }
+
+            // TODO: Присвоить this.DefaultViewModel["Group"] связываемую группу
+            // TODO: Присвоить this.DefaultViewModel["Items"] коллекцию связываемых элементов
+            // TODO: Назначение выбранного элемента объекту this.flipView.SelectedItem
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -87,14 +92,16 @@ namespace cleanwater
             catch { };
         }
 
-        private void itemGridView_ItemClick(object sender, ItemClickEventArgs e)
+        /// <summary>
+        /// Сохраняет состояние, связанное с данной страницей, в случае приостановки приложения или
+        /// удаления страницы из кэша навигации. Значения должны соответствовать требованиям сериализации
+        /// <see cref="SuspensionManager.SessionState"/>.
+        /// </summary>
+        /// <param name="pageState">Пустой словарь, заполняемый сериализуемым состоянием.</param>
+        protected override void SaveState(Dictionary<String, Object> pageState)
         {
-            try
-            {
-                var item = ((RegionWaterItem)e.ClickedItem);
-                this.Frame.Navigate(typeof(WaterDetailPage), item.Code.ToString());
-            }
-            catch { };
+            var selectedItem = this.flipView.SelectedItem;
+            // TODO: Создание производного сериализуемого параметра навигации и его назначение объекту pageState["SelectedItem"]
         }
     }
 }

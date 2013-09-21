@@ -82,11 +82,11 @@ namespace cleanwater.ViewModel
             }
         }
 
-        private WaterItem _currentRegionItem;
+        private RegionWaterItem _currentRegionItem;
         /// <summary>
         /// Текущий элемент
         /// </summary>
-        public WaterItem CurrentRegionItem
+        public RegionWaterItem CurrentRegionItem
         {
             get { return _currentRegionItem; }
             set
@@ -122,8 +122,17 @@ namespace cleanwater.ViewModel
         {
             this.Loading = true;
 
-            Items = new ObservableCollection<WaterItem>(await WaterTable.GetAllAsync());
+            ObservableCollection<WaterItem> initItems = new ObservableCollection<WaterItem>(await WaterTable.GetAllAsync());
             //Items = await WaterTable.IncludeTotalCount().ToCollectionAsync(1300); //.ToCollectionAsync(900);
+            
+            this.Items = new ObservableCollection<WaterItem>();
+            foreach (var item in initItems)
+            {
+                if (item.Ind_name.Split(' ')[0].ToString()!="Неизвестно")
+                {
+                    this.Items.Add(item);
+                };
+            }; 
             RaisePropertyChanged("Items");
 
             this.RegionItems = new ObservableCollection<RegionWaterItem>();
@@ -145,6 +154,8 @@ namespace cleanwater.ViewModel
                 this.RegionItems.Add(regItem);
                 } catch {};
             };
+
+            this.CurrentRegionItem = this.RegionItems.FirstOrDefault();
 
             this.Loading = false;
 
