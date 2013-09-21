@@ -15,7 +15,7 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="cleanwater.App">
-      <VisualElements DisplayName="Вода в Москве" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="Вода в Москве" ForegroundText="light" BackgroundColor="#464646" ToastCapable="true">
+      <VisualElements DisplayName="Вода в Москве" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="Вода в Москве" ForegroundText="light" BackgroundColor="#1BA0E1" ToastCapable="true">
         <DefaultTile ShowName="allLogos" />
         <SplashScreen Image="Assets\SplashScreen.png" />
         <InitialRotationPreference>
