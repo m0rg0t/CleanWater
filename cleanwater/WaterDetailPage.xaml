@@ -6,6 +6,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:cleanwater"
     xmlns:common="using:cleanwater.Common"
+    xmlns:telerikGrid="using:Telerik.UI.Xaml.Controls.Grid"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
@@ -56,7 +57,7 @@
                     -->
                     <UserControl Loaded="StartLayoutUpdates" Unloaded="StopLayoutUpdates">
 
-                        <StackPanel HorizontalAlignment="Left" Margin="0,4,14,0" VerticalAlignment="Top">
+                        <StackPanel HorizontalAlignment="Left" Margin="117,0,117,47" VerticalAlignment="Top">
                             <TextBlock Text="{Binding Title}" 
                                Margin="0,0,18,20" Name="CurrentDistrictTitle" 
                                Style="{StaticResource SubheaderTextStyle}" MaxHeight="60"/>
@@ -70,13 +71,49 @@
                                 </bm:Map.Center>
                             </bm:Map>-->
 
-                            <ListView
-                            TabIndex="1" Name="CurrentWaterParams"
-                            Margin="0,20,0,0"
-                            ItemsSource="{Binding Items}" 
-                            ItemTemplate="{StaticResource WaterParamsTeplateTemplate}"
-                            SelectionMode="None"
-                            IsSwipeEnabled="false"/>
+                            <telerikGrid:RadDataGrid
+                            Margin="0,20,0,0" Visibility="{Binding LoadingVisibility}"
+                            AutoGenerateColumns="False" 
+                            UserGroupMode="Disabled"
+                            ItemsSource="{Binding Items}"
+                            UserColumnReorderMode="None" SelectionMode="None">
+                                <telerikGrid:RadDataGrid.Columns>
+                                    <telerikGrid:DataGridTemplateColumn Header="Показатель">
+                                        <telerikGrid:DataGridTemplateColumn.CellContentTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Ind_name}" Margin="5,3,5,3" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                            </DataTemplate>
+                                        </telerikGrid:DataGridTemplateColumn.CellContentTemplate>
+                                    </telerikGrid:DataGridTemplateColumn>
+
+                                    <telerikGrid:DataGridTemplateColumn Header="Значение">
+                                        <telerikGrid:DataGridTemplateColumn.CellContentTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Value}" Margin="5,3,5,3" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                            </DataTemplate>
+                                        </telerikGrid:DataGridTemplateColumn.CellContentTemplate>
+                                    </telerikGrid:DataGridTemplateColumn>
+
+                                    <telerikGrid:DataGridTemplateColumn Header="Ед. измерения">
+                                        <telerikGrid:DataGridTemplateColumn.CellContentTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding MesureUnit}" Margin="5,3,5,3" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                            </DataTemplate>
+                                        </telerikGrid:DataGridTemplateColumn.CellContentTemplate>
+                                    </telerikGrid:DataGridTemplateColumn>
+
+                                    <telerikGrid:DataGridTemplateColumn Header="Норматив (СанПиН 2.1.4.1074-01)">
+                                        <telerikGrid:DataGridTemplateColumn.CellContentTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding NormalValue}"                                                    
+                                                   HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                                   Margin="5,3,5,3"/>
+                                            </DataTemplate>
+                                        </telerikGrid:DataGridTemplateColumn.CellContentTemplate>
+                                    </telerikGrid:DataGridTemplateColumn>
+
+                                </telerikGrid:RadDataGrid.Columns>
+                            </telerikGrid:RadDataGrid>
                         </StackPanel>
 
                         <!--<ScrollViewer x:Name="scrollViewer" Style="{StaticResource HorizontalScrollViewerStyle}" Grid.Row="1">
