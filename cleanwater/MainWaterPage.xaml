@@ -17,9 +17,10 @@
                     <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
                         <Image Source="{Binding Image}" Stretch="UniformToFill"/>
                     </Border>
-                    <StackPanel VerticalAlignment="Bottom" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
-                        <TextBlock Text="{Binding Regname}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0"/>
-                        <TextBlock Text="{Binding Code}" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
+                    <StackPanel MinHeight="80" VerticalAlignment="Bottom" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
+                        <TextBlock Text="{Binding Title}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
+                                   Style="{StaticResource TitleTextStyle}" Margin="15,0,15,0"/>
+                        <!--<TextBlock Text="{Binding Code}" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>-->
                     </StackPanel>
                 </Grid>
             </DataTemplate>
@@ -90,7 +91,7 @@
             Grid.RowSpan="2"
             Padding="116,136,116,46"
             ItemsSource="{Binding Source={StaticResource itemsViewSource}}"
-            ItemTemplate="{StaticResource WaterItemTemplate}"
+            ItemTemplate="{StaticResource WaterRegionStandard250x250ItemTemplate}"
             SelectionMode="None"
             IsSwipeEnabled="false"/>
 

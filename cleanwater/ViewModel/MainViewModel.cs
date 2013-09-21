@@ -4,6 +4,13 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Linq;
 using cleanwater.Common;
+using System.Net;
+using Bing;
+using System;
+using System.Collections.Generic;
+using System.Data.Services.Client;
+using System.Net;
+using System.IO;
 
 namespace cleanwater.ViewModel
 {
@@ -106,6 +113,11 @@ namespace cleanwater.ViewModel
         private MobileServiceCollection<WaterItem, WaterItem> parkItems;
         private IMobileServiceTable<WaterItem> WaterTable = App.MobileService.GetTable<WaterItem>();
 
+        
+        public void LoadRegionImage(string regionName="")
+        {
+        }
+
         public async Task<bool> LoadData()
         {
             this.Loading = true;
@@ -120,11 +132,18 @@ namespace cleanwater.ViewModel
                                     select g;
             foreach (var reg in ItemsInGroup)
             {
+                try {
                 var i = reg;
                 var regItem = new RegionWaterItem();
                 regItem.Title = reg.Key.ToString();
+                try
+                {
+                    regItem.Code = reg.ToList<WaterItem>().FirstOrDefault().Code.ToString();
+                }
+                catch { };
                 regItem.Items = new ObservableCollection<WaterItem>(reg.ToList<WaterItem>());
                 this.RegionItems.Add(regItem);
+                } catch {};
             };
 
             this.Loading = false;

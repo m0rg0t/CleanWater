@@ -105,6 +105,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\BindableBase.cs" />
+    <Compile Include="Common\BingSearchContainer.cs" />
     <Compile Include="Common\BooleanNegationConverter.cs" />
     <Compile Include="Common\BooleanToVisibilityConverter.cs" />
     <Compile Include="Common\csvparser.cs" />
@@ -125,6 +126,9 @@
     <Compile Include="Common\QuickStartTask.xaml.cs">
       <DependentUpon>QuickStartTask.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SearchResultsPage.xaml.cs">
+      <DependentUpon>SearchResultsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\RegionWaterItem.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
@@ -137,9 +141,62 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Logo.png" />
+    <Content Include="Assets\regions\1.jpg" />
+    <Content Include="Assets\regions\10.jpg" />
+    <Content Include="Assets\regions\11.jpg" />
+    <Content Include="Assets\regions\12.jpg" />
+    <Content Include="Assets\regions\13.jpg" />
+    <Content Include="Assets\regions\136.jpg" />
+    <Content Include="Assets\regions\14.jpg" />
+    <Content Include="Assets\regions\16.jpg" />
+    <Content Include="Assets\regions\17.jpg" />
+    <Content Include="Assets\regions\18.jpg" />
+    <Content Include="Assets\regions\19.jpg" />
+    <Content Include="Assets\regions\2.jpg" />
+    <Content Include="Assets\regions\20.jpg" />
+    <Content Include="Assets\regions\21.jpg" />
+    <Content Include="Assets\regions\22.jpg" />
+    <Content Include="Assets\regions\23.jpg" />
+    <Content Include="Assets\regions\24.jpg" />
+    <Content Include="Assets\regions\25.jpg" />
+    <Content Include="Assets\regions\26.jpg" />
+    <Content Include="Assets\regions\27.jpg" />
+    <Content Include="Assets\regions\28.jpg" />
+    <Content Include="Assets\regions\29.jpg" />
+    <Content Include="Assets\regions\3.jpg" />
+    <Content Include="Assets\regions\30.jpg" />
+    <Content Include="Assets\regions\31.jpg" />
+    <Content Include="Assets\regions\32.jpg" />
+    <Content Include="Assets\regions\33.jpg" />
+    <Content Include="Assets\regions\34.jpg" />
+    <Content Include="Assets\regions\35.jpg" />
+    <Content Include="Assets\regions\36.jpg" />
+    <Content Include="Assets\regions\37.jpg" />
+    <Content Include="Assets\regions\38.jpg" />
+    <Content Include="Assets\regions\39.jpg" />
+    <Content Include="Assets\regions\4.jpg" />
+    <Content Include="Assets\regions\40.jpg" />
+    <Content Include="Assets\regions\41.jpg" />
+    <Content Include="Assets\regions\42.jpg" />
+    <Content Include="Assets\regions\43.jpg" />
+    <Content Include="Assets\regions\44.jpg" />
+    <Content Include="Assets\regions\47.jpg" />
+    <Content Include="Assets\regions\49.jpg" />
+    <Content Include="Assets\regions\5.jpg" />
+    <Content Include="Assets\regions\54.jpg" />
+    <Content Include="Assets\regions\56.jpg" />
+    <Content Include="Assets\regions\59.jpg" />
+    <Content Include="Assets\regions\6.jpg" />
+    <Content Include="Assets\regions\61.jpg" />
+    <Content Include="Assets\regions\7.jpg" />
+    <Content Include="Assets\regions\8.jpg" />
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />
+    <Page Include="SearchResultsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWaterPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -171,6 +228,14 @@
     </Reference>
     <Reference Include="GalaSoft.MvvmLight.Win8">
       <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\netcore45\GalaSoft.MvvmLight.Win8.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData.WindowsStore, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Microsoft WCF Data Services\5.0\bin\WindowsStore\Microsoft.Data.OData.WindowsStore.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client.WindowsStore, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Microsoft WCF Data Services\5.0\bin\WindowsStore\Microsoft.Data.Services.Client.WindowsStore.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\netcore45\Microsoft.Practices.ServiceLocation.dll</HintPath>
@@ -207,7 +272,9 @@
     <None Include="Data\all.csv" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Controls\" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>
   </PropertyGroup>

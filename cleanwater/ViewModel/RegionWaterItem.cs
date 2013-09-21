@@ -23,7 +23,7 @@ namespace cleanwater.ViewModel
             get { return _title; }
             set { 
                 _title = value;
-                RaisePropertyChanged("Items");
+                RaisePropertyChanged("Title");
             }
         }
 
@@ -35,10 +35,23 @@ namespace cleanwater.ViewModel
         {
             get { return _code; }
             set { 
-                _code = value; 
-                RaisePropertyChanged("Items");
+                _code = value;
+
+                this.Image = "/Assets/regions/"+_code +".jpg";
+
+                RaisePropertyChanged("Code");
             }
-        }        
+        }
+
+        private string _image;
+        /// <summary>
+        /// image for region
+        /// </summary>
+        public string Image
+        {
+            get { return _image; }
+            set { _image = value; }
+        }
 
         private ObservableCollection<WaterItem> _items;
         /// <summary>
