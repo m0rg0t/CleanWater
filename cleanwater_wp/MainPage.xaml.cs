@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Tasks;
 using Coding4Fun.Toolkit.Controls;
+using cleanwater_wp.ViewModel;
 
 namespace cleanwater_wp
 {
@@ -29,6 +30,14 @@ namespace cleanwater_wp
         // Load data for the ViewModel Items
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                if (ViewModelLocator.MainStatic.Items.Count() < 1)
+                {
+                    ViewModelLocator.MainStatic.LoadData();
+                };
+            }
+            catch { };
         }
 
         private void RateAppMenuItem_Click(object sender, EventArgs e)
@@ -65,6 +74,50 @@ namespace cleanwater_wp
                     IsCancelVisible = false
                 };
                 messagePrompt.Show();
+            }
+            catch { };
+        }
+
+        private void SearchTile_Tap(object sender, GestureEventArgs e)
+        {
+            try
+            {
+                //NavigationService.Navigate(new Uri("/SearchPage.xaml", UriKind.Relative));
+                InputPrompt input = new InputPrompt();
+                input.Completed += input_Completed;
+                input.Title = "Поиск";
+                input.Message = "ВВедите текст для поиска:";
+                input.Show();
+            }
+            catch { };
+        }
+
+        private void input_Completed(object sender, PopUpEventArgs<string, PopUpResult> e)
+        {
+            try
+            {
+                ViewModelLocator.MainStatic.SearchQuery = e.Result.ToString();
+                MainPanorama.DefaultItem = MainPanorama.Items[2];
+            }
+            catch { };
+        }
+
+        private void ItemsList_ItemTap(object sender, Telerik.Windows.Controls.ListBoxItemTapEventArgs e)
+        {
+            try
+            {
+                ViewModelLocator.MainStatic.CurrentRegionItem = (RegionWaterItem)ItemsList.SelectedItem;
+                NavigationService.Navigate(new Uri("/RegionPage.xaml", UriKind.Relative));
+            }
+            catch { };
+        }
+
+        private void SearchItemsList_ItemTap(object sender, Telerik.Windows.Controls.ListBoxItemTapEventArgs e)
+        {
+            try
+            {
+                ViewModelLocator.MainStatic.CurrentRegionItem = (RegionWaterItem)SearchItemsList.SelectedItem;
+                NavigationService.Navigate(new Uri("/RegionPage.xaml", UriKind.Relative));
             }
             catch { };
         }

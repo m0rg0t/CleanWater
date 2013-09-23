@@ -240,11 +240,15 @@ namespace cleanwater.ViewModel
                 regItem.Items = new ObservableCollection<WaterItem>(reg.ToList<WaterItem>());
                 this.RegionItems.Add(regItem);
 
-                    if (regItem.Title.Trim()==this.CurrentDistrict.Trim()) {
+                    /*if (regItem.Title.Trim()==this.CurrentDistrict.Trim()) {
                         this.CurrentRegionItem = regItem;
-                    };
+                    };*/
 
                 } catch {};
+            };
+
+            foreach (var item in this.Items)
+            {
             };
 
             if (this.CurrentRegionItem==null) {

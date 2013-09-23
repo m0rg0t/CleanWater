@@ -11,7 +11,7 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    shell:SystemTray.IsVisible="{Binding Loading}"
+    shell:SystemTray.IsVisible="True"
     shell:SystemTray.Opacity="0"
     xmlns:telerikData="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Data"
     xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
@@ -29,11 +29,15 @@
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator IsIndeterminate="true" IsVisible="{Binding Loading}" Text="Загрузка..." />
+    </shell:SystemTray.ProgressIndicator>
+
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
  
         <!--Panorama control-->
-        <controls:Panorama>
+        <controls:Panorama Name="MainPanorama">
             <controls:Panorama.Title>
                 <Border Margin="10,90,0,0">
                     <TextBlock Text="Вода в Москве" FontSize="80"/>
@@ -54,7 +58,7 @@
                                                   Name="RegionsTile" 
                                                   Width="352"/>
                     <telerikPrimitives:RadHubTile Title="Поиск" Name="SearchTile" 
-                                                  ImageSource="Assets/search2.png"/>
+                                                  ImageSource="Assets/search2.png" Tap="SearchTile_Tap"/>
                     <telerikPrimitives:RadHubTile Title="О программе"                                                      
                                                   Name="AboutTile" 
                                                   ImageSource="Assets/help2.png"/>
@@ -70,9 +74,46 @@
                     </Border>
                 </controls:PanoramaItem.Header>
                 <!--Double line list with image placeholder and text wrapping-->
+                <ScrollViewer Height="600">
                 <StackPanel>
-                    
-                </StackPanel>
+                        <TextBlock Text="{Binding Title}" TextWrapping="Wrap" FontSize="40"
+                           DataContext="{Binding Main.GeoCurrentRegionItem, Source={StaticResource Locator}}"/>
+                <telerikData:RadJumpList HorizontalAlignment="Left" 
+                     Margin="0,-10,0,0" Name="CurrentRegion" 
+                     VerticalAlignment="Top" 
+                     Height="1200"
+                    ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                     ItemsSource="{Binding Items}"
+                     DataContext="{Binding Main.GeoCurrentRegionItem, Source={StaticResource Locator}}" 
+                     EmptyContent="Нет данных">
+                    <telerikData:RadJumpList.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Grid Margin="0,15,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="200"></ColumnDefinition>
+                                        <ColumnDefinition Width="200"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Margin="0,0,5,0" Text="{Binding Ind_name}" Grid.Column="0" TextWrapping="Wrap" />
+                                    <TextBlock Text="{Binding ValueMesureUnit}" Grid.Column="1" TextWrapping="Wrap" />
+                                </Grid>
+                            </StackPanel>
+                            <!--<Grid Margin="0,15,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="160"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" Stretch="UniformToFill" HorizontalAlignment="Left" 
+                                       VerticalAlignment="Top" Source="{Binding Image}"/>
+                                <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                                    <TextBlock Text="{Binding Title}" TextWrapping="Wrap" />
+                                </StackPanel>
+                            </Grid>-->
+                        </DataTemplate>
+                    </telerikData:RadJumpList.ItemTemplate>
+                </telerikData:RadJumpList>
+                    </StackPanel>
+                </ScrollViewer>
             </controls:PanoramaItem>
 
             <controls:PanoramaItem>
@@ -82,10 +123,62 @@
                     </Border>
                 </controls:PanoramaItem.Header>
                 <!--Double line list with image placeholder and text wrapping-->
-                <StackPanel>
-
-                </StackPanel>
+                <telerikData:RadJumpList HorizontalAlignment="Left" 
+                     Margin="0,-10,0,0" Name="ItemsList" 
+                     VerticalAlignment="Top" 
+                     ItemsSource="{Binding RegionItems}"
+                     DataContext="{Binding Main, Source={StaticResource Locator}}" 
+                     EmptyContent="Нет данных" ItemTap="ItemsList_ItemTap">
+                    <telerikData:RadJumpList.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0,15,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="160"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" Stretch="UniformToFill" HorizontalAlignment="Left" 
+                                       VerticalAlignment="Top" Source="{Binding Image}"/>
+                                <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                                    <TextBlock Text="{Binding Title}" TextWrapping="Wrap" />
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </telerikData:RadJumpList.ItemTemplate>
+                </telerikData:RadJumpList>
             </controls:PanoramaItem>
+
+
+            <controls:PanoramaItem>
+                <controls:PanoramaItem.Header>
+                    <Border Margin="-12,0,0,0">
+                        <TextBlock Text="Результаты поиска" FontSize="50" Margin="15,-15,0,0"/>
+                    </Border>
+                </controls:PanoramaItem.Header>
+                <!--Double line list with image placeholder and text wrapping-->
+                <telerikData:RadJumpList HorizontalAlignment="Left" 
+                     Margin="0,-10,0,0" Name="SearchItemsList" 
+                     VerticalAlignment="Top" 
+                     ItemsSource="{Binding ResultItems}"
+                     DataContext="{Binding Main, Source={StaticResource Locator}}" 
+                     EmptyContent="Нет данных" ItemTap="SearchItemsList_ItemTap">
+                    <telerikData:RadJumpList.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0,15,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="160"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" Stretch="UniformToFill" HorizontalAlignment="Left" 
+                                       VerticalAlignment="Top" Source="{Binding Image}"/>
+                                <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                                    <TextBlock Text="{Binding Title}" TextWrapping="Wrap" />
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </telerikData:RadJumpList.ItemTemplate>
+                </telerikData:RadJumpList>
+            </controls:PanoramaItem>
+
 
         </controls:Panorama>
     </Grid>
