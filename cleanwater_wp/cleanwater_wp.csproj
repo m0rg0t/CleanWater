@@ -1,0 +1,326 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B91F34EC-090A-4C99-A9AA-81714AD48D27}</ProjectGuid>
+    <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>cleanwater_wp</RootNamespace>
+    <AssemblyName>cleanwater_wp</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <SilverlightApplication>true</SilverlightApplication>
+    <SupportedCultures>
+    </SupportedCultures>
+    <XapOutputs>true</XapOutputs>
+    <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
+    <XapFilename>cleanwater_wp.xap</XapFilename>
+    <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
+    <SilverlightAppEntry>cleanwater_wp.App</SilverlightAppEntry>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Coding4Fun.Toolkit.Controls">
+      <HintPath>..\packages\Coding4Fun.Toolkit.Controls.2.0.7\lib\wp71\Coding4Fun.Toolkit.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras.WP71, Version=4.1.27.22669, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MvvmLightLibs.4.1.27.1\lib\sl4-wp71\GalaSoft.MvvmLight.Extras.WP71.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.WP71, Version=4.1.27.22669, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MvvmLightLibs.4.1.27.1\lib\sl4-wp71\GalaSoft.MvvmLight.WP71.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Phone" />
+    <Reference Include="Microsoft.Phone.Controls" />
+    <Reference Include="Microsoft.Phone.Interop" />
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.4.1.27.1\lib\sl4-wp71\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.16\lib\sl4-windowsphone71\Microsoft.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.16\lib\sl4-windowsphone71\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Phone">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.16\lib\sl4-windowsphone71\Microsoft.Threading.Tasks.Extensions.Phone.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Mobile">
+      <HintPath>..\packages\WindowsAzure.MobileServices.1.0.2\lib\sl4-windowsphone71\Microsoft.WindowsAzure.Mobile.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Mobile.Ext">
+      <HintPath>..\packages\WindowsAzure.MobileServices.1.0.2\lib\sl4-windowsphone71\Microsoft.WindowsAzure.Mobile.Ext.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Mobile.UI">
+      <HintPath>..\packages\WindowsAzure.MobileServices.1.0.2\lib\sl4-windowsphone71\Microsoft.WindowsAzure.Mobile.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\portable-net40+sl4+wp7+win8\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.3\lib\sl4-windowsphone71\System.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.15\lib\sl4-windowsphone71\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.15\lib\sl4-windowsphone71\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.15\lib\sl4-windowsphone71\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.3\lib\sl4-windowsphone71\System.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.3\lib\sl4-windowsphone71\System.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Interactivity, Version=3.8.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.4.1.27.1\lib\sl4-wp71\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="mscorlib.extensions" />
+    <Reference Include="Telerik.Windows.Behaviors">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Telerik\RadControls for Windows Phone 7 Q1 2013\Binaries\WindowsPhone\Telerik.Windows.Behaviors.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Data">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Telerik\RadControls for Windows Phone 7 Q1 2013\Binaries\WindowsPhone\Telerik.Windows.Controls.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.DataVisualization">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Telerik\RadControls for Windows Phone 7 Q1 2013\Binaries\WindowsPhone\Telerik.Windows.Controls.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Input">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Telerik\RadControls for Windows Phone 7 Q1 2013\Binaries\WindowsPhone\Telerik.Windows.Controls.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Primitives">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Telerik\RadControls for Windows Phone 7 Q1 2013\Binaries\WindowsPhone\Telerik.Windows.Controls.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Core">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Telerik\RadControls for Windows Phone 7 Q1 2013\Binaries\WindowsPhone\Telerik.Windows.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Data">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Telerik\RadControls for Windows Phone 7 Q1 2013\Binaries\WindowsPhone\Telerik.Windows.Data.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\MobileServiceTableExtensions.cs" />
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs">
+      <SubType>
+      </SubType>
+    </Compile>
+    <Compile Include="ViewModel\RegionWaterItem.cs" />
+    <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="ViewModel\WaterItem.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+    <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Properties\AppManifest.xml" />
+    <None Include="Properties\WMAppManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ApplicationIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\help2.png" />
+    <Content Include="Assets\Logo.png" />
+    <Content Include="Assets\prices_icon.png" />
+    <Content Include="Assets\regions\1.jpg" />
+    <Content Include="Assets\regions\10.jpg" />
+    <Content Include="Assets\regions\100.jpg" />
+    <Content Include="Assets\regions\101.jpg" />
+    <Content Include="Assets\regions\102.jpg" />
+    <Content Include="Assets\regions\103.jpg" />
+    <Content Include="Assets\regions\104.jpg" />
+    <Content Include="Assets\regions\105.jpg" />
+    <Content Include="Assets\regions\106.jpg" />
+    <Content Include="Assets\regions\107.jpg" />
+    <Content Include="Assets\regions\108.jpg" />
+    <Content Include="Assets\regions\109.jpg" />
+    <Content Include="Assets\regions\11.jpg" />
+    <Content Include="Assets\regions\111.jpg" />
+    <Content Include="Assets\regions\112.jpg" />
+    <Content Include="Assets\regions\113.jpg" />
+    <Content Include="Assets\regions\114.jpg" />
+    <Content Include="Assets\regions\116.jpg" />
+    <Content Include="Assets\regions\119.jpg" />
+    <Content Include="Assets\regions\12.jpg" />
+    <Content Include="Assets\regions\120.jpg" />
+    <Content Include="Assets\regions\121.jpg" />
+    <Content Include="Assets\regions\122.jpg" />
+    <Content Include="Assets\regions\125.jpg" />
+    <Content Include="Assets\regions\126.jpg" />
+    <Content Include="Assets\regions\127.jpg" />
+    <Content Include="Assets\regions\128.jpg" />
+    <Content Include="Assets\regions\129.jpg" />
+    <Content Include="Assets\regions\13.jpg" />
+    <Content Include="Assets\regions\130.jpg" />
+    <Content Include="Assets\regions\131.jpg" />
+    <Content Include="Assets\regions\132.jpg" />
+    <Content Include="Assets\regions\134.jpg" />
+    <Content Include="Assets\regions\135.jpg" />
+    <Content Include="Assets\regions\136.jpg" />
+    <Content Include="Assets\regions\137.jpg" />
+    <Content Include="Assets\regions\14.jpg" />
+    <Content Include="Assets\regions\16.jpg" />
+    <Content Include="Assets\regions\17.jpg" />
+    <Content Include="Assets\regions\18.jpg" />
+    <Content Include="Assets\regions\19.jpg" />
+    <Content Include="Assets\regions\2.jpg" />
+    <Content Include="Assets\regions\20.jpg" />
+    <Content Include="Assets\regions\21.jpg" />
+    <Content Include="Assets\regions\22.jpg" />
+    <Content Include="Assets\regions\23.jpg" />
+    <Content Include="Assets\regions\24.jpg" />
+    <Content Include="Assets\regions\25.jpg" />
+    <Content Include="Assets\regions\26.jpg" />
+    <Content Include="Assets\regions\27.jpg" />
+    <Content Include="Assets\regions\28.jpg" />
+    <Content Include="Assets\regions\29.jpg" />
+    <Content Include="Assets\regions\3.jpg" />
+    <Content Include="Assets\regions\30.jpg" />
+    <Content Include="Assets\regions\31.jpg" />
+    <Content Include="Assets\regions\32.jpg" />
+    <Content Include="Assets\regions\33.jpg" />
+    <Content Include="Assets\regions\34.jpg" />
+    <Content Include="Assets\regions\35.jpg" />
+    <Content Include="Assets\regions\36.jpg" />
+    <Content Include="Assets\regions\37.jpg" />
+    <Content Include="Assets\regions\38.jpg" />
+    <Content Include="Assets\regions\39.jpg" />
+    <Content Include="Assets\regions\4.jpg" />
+    <Content Include="Assets\regions\40.jpg" />
+    <Content Include="Assets\regions\41.jpg" />
+    <Content Include="Assets\regions\42.jpg" />
+    <Content Include="Assets\regions\43.jpg" />
+    <Content Include="Assets\regions\44.jpg" />
+    <Content Include="Assets\regions\45.jpg" />
+    <Content Include="Assets\regions\46.jpg" />
+    <Content Include="Assets\regions\47.jpg" />
+    <Content Include="Assets\regions\49.jpg" />
+    <Content Include="Assets\regions\5.jpg" />
+    <Content Include="Assets\regions\50.jpg" />
+    <Content Include="Assets\regions\51.jpg" />
+    <Content Include="Assets\regions\52.jpg" />
+    <Content Include="Assets\regions\53.jpg" />
+    <Content Include="Assets\regions\54.jpg" />
+    <Content Include="Assets\regions\55.jpg" />
+    <Content Include="Assets\regions\56.jpg" />
+    <Content Include="Assets\regions\57.jpg" />
+    <Content Include="Assets\regions\58.jpg" />
+    <Content Include="Assets\regions\59.jpg" />
+    <Content Include="Assets\regions\6.jpg" />
+    <Content Include="Assets\regions\60.jpg" />
+    <Content Include="Assets\regions\61.jpg" />
+    <Content Include="Assets\regions\62.jpg" />
+    <Content Include="Assets\regions\63.jpg" />
+    <Content Include="Assets\regions\64.jpg" />
+    <Content Include="Assets\regions\65.jpg" />
+    <Content Include="Assets\regions\66.jpg" />
+    <Content Include="Assets\regions\67.jpg" />
+    <Content Include="Assets\regions\68.jpg" />
+    <Content Include="Assets\regions\69.jpg" />
+    <Content Include="Assets\regions\7.jpg" />
+    <Content Include="Assets\regions\70.jpg" />
+    <Content Include="Assets\regions\71.jpg" />
+    <Content Include="Assets\regions\72.jpg" />
+    <Content Include="Assets\regions\74.jpg" />
+    <Content Include="Assets\regions\75.jpg" />
+    <Content Include="Assets\regions\76.jpg" />
+    <Content Include="Assets\regions\77.jpg" />
+    <Content Include="Assets\regions\78.jpg" />
+    <Content Include="Assets\regions\79.jpg" />
+    <Content Include="Assets\regions\8.jpg" />
+    <Content Include="Assets\regions\80.jpg" />
+    <Content Include="Assets\regions\81.jpg" />
+    <Content Include="Assets\regions\82.jpg" />
+    <Content Include="Assets\regions\83.jpg" />
+    <Content Include="Assets\regions\84.jpg" />
+    <Content Include="Assets\regions\85.jpg" />
+    <Content Include="Assets\regions\86.jpg" />
+    <Content Include="Assets\regions\87.jpg" />
+    <Content Include="Assets\regions\88.jpg" />
+    <Content Include="Assets\regions\90.jpg" />
+    <Content Include="Assets\regions\91.jpg" />
+    <Content Include="Assets\regions\92.jpg" />
+    <Content Include="Assets\regions\93.jpg" />
+    <Content Include="Assets\regions\94.jpg" />
+    <Content Include="Assets\regions\95.jpg" />
+    <Content Include="Assets\regions\96.jpg" />
+    <Content Include="Assets\regions\97.jpg" />
+    <Content Include="Assets\regions\98.jpg" />
+    <Content Include="Assets\regions\99.jpg" />
+    <Content Include="Assets\search2.png" />
+    <Content Include="Assets\SmallLogo.png" />
+    <Content Include="Assets\SplashScreen.png" />
+    <Content Include="Assets\StoreLogo.png" />
+    <Content Include="Background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
+    <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
+    <Content Include="SplashScreenImage.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+</Project>
