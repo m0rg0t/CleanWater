@@ -11,8 +11,9 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    shell:SystemTray.IsVisible="True"
+    shell:SystemTray.IsVisible="{Binding Loading}"
     shell:SystemTray.Opacity="0"
+    DataContext="{Binding Main, Source={StaticResource Locator}}"
     xmlns:telerikData="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Data"
     xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
     xmlns:telerikCore="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core"
@@ -25,6 +26,8 @@
                                               Text="Оценить приложение" Click="RateAppMenuItem_Click"/>
                 <shell:ApplicationBarMenuItem x:Name="PrivacyMenuItem" 
                                               Text="Политика конфиденциальности" Click="PrivacyMenuItem_Click"/>
+                <shell:ApplicationBarMenuItem x:Name="LocationMenuItem" 
+                                              Text="Вкл\откл геопозициониование"/>
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
@@ -60,7 +63,7 @@
                     <telerikPrimitives:RadHubTile Title="Поиск" Name="SearchTile" 
                                                   ImageSource="Assets/search2.png" Tap="SearchTile_Tap"/>
                     <telerikPrimitives:RadHubTile Title="О программе"                                                      
-                                                  Name="AboutTile" 
+                                                  Name="AboutTile" Tap="AboutTile_Tap"
                                                   ImageSource="Assets/help2.png"/>
                 </telerikPrimitives:RadWrapPanel>
             </controls:PanoramaItem>
@@ -81,7 +84,7 @@
                 <telerikData:RadJumpList HorizontalAlignment="Left" 
                      Margin="0,-10,0,0" Name="CurrentRegion" 
                      VerticalAlignment="Top" 
-                     Height="1200"
+                     Height="800"
                     ScrollViewer.VerticalScrollBarVisibility="Disabled"
                      ItemsSource="{Binding Items}"
                      DataContext="{Binding Main.GeoCurrentRegionItem, Source={StaticResource Locator}}" 

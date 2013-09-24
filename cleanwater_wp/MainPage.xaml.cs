@@ -122,5 +122,26 @@ namespace cleanwater_wp
             catch { };
         }
 
+        private void AboutTile_Tap(object sender, GestureEventArgs e)
+        {
+            try
+            {
+                var messagePrompt = new MessagePrompt
+                {
+                    Title = "О приложении",
+                    Body = new TextBlock
+                    {
+                        Text = "Приложение для просмотра информации о качестве воды в Москве по районам",
+                        MaxHeight = 500,
+                        TextWrapping = TextWrapping.Wrap
+                    },
+                    IsAppBarVisible = false,
+                    IsCancelVisible = false
+                };
+                messagePrompt.Show();
+            }
+            catch { };
+        }
+
     }
 }
