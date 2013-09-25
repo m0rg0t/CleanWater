@@ -114,5 +114,32 @@ namespace cleanwater
             var selectedItem = this.flipView.SelectedItem;
             // TODO: Создание производного сериализуемого параметра навигации и его назначение объекту pageState["SelectedItem"]
         }
+
+        private void AddCommentButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                ViewModelLocator.MainStatic.AddBox = new Flyout();
+                ViewModelLocator.MainStatic.AddBox.Placement = PlacementMode.Top;
+                ViewModelLocator.MainStatic.AddBox.Content = new AddCommentControl();
+                ViewModelLocator.MainStatic.AddBox.PlacementTarget = sender as UIElement;
+                ViewModelLocator.MainStatic.AddBox.IsOpen = true;
+            }
+            catch { };
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                ViewModelLocator.MainStatic.AddBox = new Flyout();
+                ViewModelLocator.MainStatic.AddBox.Placement = PlacementMode.Top;
+                ViewModelLocator.MainStatic.AddBox.Content = new AddCommentControl();
+                ViewModelLocator.MainStatic.AddBox.PlacementTarget = sender as UIElement;
+                ViewModelLocator.MainStatic.AddBox.IsOpen = true;
+            }
+            catch { };
+        }
+
     }
 }

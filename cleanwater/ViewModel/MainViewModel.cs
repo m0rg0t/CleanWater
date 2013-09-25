@@ -15,6 +15,7 @@ using Newtonsoft.Json.Linq;
 using System.Net.Http;
 using Windows.Devices.Geolocation;
 using Windows.UI.Xaml;
+using Callisto.Controls;
 
 namespace cleanwater.ViewModel
 {
@@ -191,6 +192,10 @@ namespace cleanwater.ViewModel
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public Flyout AddBox { get; set; }
 
         public async Task<bool> GetCurrentPosition()
         {
