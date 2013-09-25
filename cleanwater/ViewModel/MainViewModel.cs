@@ -155,7 +155,7 @@ namespace cleanwater.ViewModel
             return await response.Content.ReadAsStringAsync();
         }
 
-        public async void GetPlaceInfo(double lat, double lon)
+        public async Task<bool> GetPlaceInfo(double lat, double lon)
         {
             var roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
             //if (roamingSettings.Values["street"].ToString() == "")
@@ -172,6 +172,7 @@ namespace cleanwater.ViewModel
             catch
             {
             };
+            return true;
             //};
         }
         public double Latitued = 55.758;
@@ -189,7 +190,25 @@ namespace cleanwater.ViewModel
                 RaisePropertyChanged("CurrentDistrict");
             }
         }
-        
+
+
+        public async Task<bool> GetCurrentPosition()
+        {
+            try
+            {
+                var geolocator = new Geolocator();
+                Geoposition position = await geolocator.GetGeopositionAsync();
+                var str = position.ToString();
+                Latitued = position.Coordinate.Latitude;
+                Longitude = position.Coordinate.Longitude;
+                await GetPlaceInfo(Latitued, Longitude);
+            }
+            catch
+            {
+                GetPlaceInfo(Latitued, Longitude);
+            };
+            return true;
+        }
 
         public async Task<bool> LoadData()
         {
@@ -209,18 +228,7 @@ namespace cleanwater.ViewModel
             }; 
             RaisePropertyChanged("Items");
 
-            try
-            {
-                var geolocator = new Geolocator();
-                Geoposition position = await geolocator.GetGeopositionAsync();
-                var str = position.ToString();
-                Latitued = position.Coordinate.Latitude;
-                Longitude = position.Coordinate.Longitude;
-                GetPlaceInfo(Latitued, Longitude);
-            }
-            catch {
-                GetPlaceInfo(Latitued, Longitude);
-            };
+            //await GetCurrentPosition();
 
             this.RegionItems = new ObservableCollection<RegionWaterItem>();
             var ItemsInGroup = from b in this.Items
@@ -247,9 +255,7 @@ namespace cleanwater.ViewModel
                 } catch {};
             };
 
-            foreach (var item in this.Items)
-            {
-            };
+            await GetCurrentPosition();
 
             if (this.CurrentRegionItem==null) {
                 this.CurrentRegionItem = this.RegionItems.FirstOrDefault();
