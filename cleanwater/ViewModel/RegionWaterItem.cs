@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using Microsoft.WindowsAzure.MobileServices;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -65,6 +66,29 @@ namespace cleanwater.ViewModel
                 RaisePropertyChanged("Items");
             }
         }
+
+        private ObservableCollection<CommentItem> _commentItems = new ObservableCollection<CommentItem>();
+        /// <summary>
+        /// Список комментариев
+        /// </summary>
+        public ObservableCollection<CommentItem> CommentItems
+        {
+            get { return _commentItems; }
+            set { 
+                _commentItems = value;
+                RaisePropertyChanged("CommentItems");
+            }
+        }
+
+        private MobileServiceCollection<CommentItem, CommentItem> commentItems;
+        private IMobileServiceTable<CommentItem> CommentTable = App.MobileService.GetTable<CommentItem>();
+
+        public async Task<bool> LoadComments()
+        {
+            this.CommentItems = await CommentTable.Where(c => c.RegionCode == this.Code).ToCollectionAsync();
+            return true;
+        }
+        
         
     }
 }

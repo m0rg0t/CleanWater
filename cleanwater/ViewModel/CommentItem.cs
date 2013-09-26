@@ -51,6 +51,17 @@ namespace cleanwater.ViewModel
             get { return _createdAt; }
             set { _createdAt = value; }
         }
+
+        private string _regionCode;
+        /// <summary>
+        /// unique region code
+        /// </summary>
+        public string RegionCode
+        {
+            get { return _regionCode; }
+            set { _regionCode = value; }
+        }
+        
         
         
         

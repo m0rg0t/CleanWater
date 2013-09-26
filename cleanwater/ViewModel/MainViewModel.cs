@@ -132,6 +132,21 @@ namespace cleanwater.ViewModel
             }
         }
 
+
+        private RegionWaterItem _currentSelectedRegionItem;
+        /// <summary>
+        /// Текущий выбранный элемент
+        /// </summary>
+        public RegionWaterItem CurrentSelectedRegionItem
+        {
+            get { return _currentSelectedRegionItem; }
+            set
+            {
+                _currentSelectedRegionItem = value;
+                RaisePropertyChanged("CurrentSelectedRegionItem");
+            }
+        }
+
         private ObservableCollection<RegionWaterItem> _regionItems;
         /// <summary>
         /// 

@@ -37,6 +37,7 @@ namespace cleanwater.Controls
                 item.Username = this.Username.Text;
                 item.Comment = this.Comment.Text;
                 item.CreatedAt = DateTime.Now;
+                item.RegionCode = ViewModelLocator.MainStatic.CurrentSelectedRegionItem.Code.ToString();
                 ViewModelLocator.MainStatic.AddBox.IsOpen = false;
                 if ((item.Username != "") && (item.Username != ""))
                 {

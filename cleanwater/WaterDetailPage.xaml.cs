@@ -8,6 +8,7 @@ using System.Linq;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.ApplicationSettings;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -55,6 +56,8 @@ namespace cleanwater
                 this.DefaultViewModel["Items"] = ViewModelLocator.MainStatic.RegionItems;
 
                 this.flipView.SelectedItem = item;
+                ViewModelLocator.MainStatic.CurrentSelectedRegionItem = item;
+                //item.LoadComments();
             }
             catch { };
 
@@ -139,6 +142,46 @@ namespace cleanwater
                 ViewModelLocator.MainStatic.AddBox.IsOpen = true;
             }
             catch { };
+        }
+
+        private async void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                RegionWaterItem item = (RegionWaterItem)this.flipView.SelectedItem;
+                ViewModelLocator.MainStatic.CurrentSelectedRegionItem = item;
+
+                //if (item.CommentItems.Count() < 1)
+                //{
+                    ViewModelLocator.MainStatic.Loading = true;
+                    await item.LoadComments();
+                    ViewModelLocator.MainStatic.Loading = false;
+
+                    if (item.CommentItems.Count() < 1)
+                    {
+                        MessageDialog result = new MessageDialog("К сожалению у района еще не добавлены комментарии о качетсве воды. Вы можете стать первым и добавить свой комментарий.");
+                        result.ShowAsync();
+                    }
+                    else
+                    {
+                        this.Frame.Navigate(typeof(CommentsSplitPage), item.Code.ToString());
+                    };
+                //};
+            }
+            catch { };
+
+        }
+
+        private void flipView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                RegionWaterItem item = (RegionWaterItem)this.flipView.SelectedItem;
+                ViewModelLocator.MainStatic.CurrentSelectedRegionItem = item;
+                //item.LoadComments();
+            }
+            catch { };
+            
         }
 
     }

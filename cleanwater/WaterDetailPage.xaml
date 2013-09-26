@@ -62,7 +62,7 @@
             AutomationProperties.Name="Item Details"
             TabIndex="1"
             Grid.RowSpan="2"
-            ItemsSource="{Binding Source={StaticResource itemsViewSource}}">
+            ItemsSource="{Binding Source={StaticResource itemsViewSource}}" SelectionChanged="flipView_SelectionChanged">
 
             <FlipView.ItemContainerStyle>
                 <Style TargetType="FlipViewItem">
@@ -136,7 +136,10 @@
                                 </telerikGrid:RadDataGrid.Columns>
                             </telerikGrid:RadDataGrid>
                             
-                            <Button Content="Добавить комментарий" Click="Button_Click" Margin="0,20,0,0"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Добавить комментарий" Click="Button_Click" Margin="0,20,0,0"/>
+                                <Button Content="Просмотреть комментарии" Margin="20,20,0,0" Click="Button_Click_1"/>
+                            </StackPanel>                            
                         </StackPanel>
 
                         <!--<ScrollViewer x:Name="scrollViewer" Style="{StaticResource HorizontalScrollViewerStyle}" Grid.Row="1">
@@ -220,6 +223,11 @@
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
             <TextBlock x:Name="pageTitle" Text="Подробности о воде в районе" Style="{StaticResource PageHeaderTextStyle}" Grid.Column="1" IsHitTestVisible="false"/>
         </Grid>
+
+        <ProgressRing HorizontalAlignment="Center" 
+		VerticalAlignment="Center" Grid.ColumnSpan="2" Width="130" Height="130"
+        DataContext="{Binding Main, Source={StaticResource Locator}}"
+		Grid.RowSpan="2" IsActive="{Binding Path=Loading}"/>
 
         <VisualStateManager.VisualStateGroups>
 
