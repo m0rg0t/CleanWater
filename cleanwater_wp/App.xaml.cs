@@ -14,6 +14,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using cleanwater_wp.ViewModel;
 using Microsoft.WindowsAzure.MobileServices;
+using ButtonLibrary;
 
 namespace cleanwater_wp
 {
@@ -24,6 +25,8 @@ namespace cleanwater_wp
             "https://cleanwater.azure-mobile.net/",
             "ulDlqnRQmpiaxhglbLyjtouAstojXn10"
         );
+
+        public static ProfitButtonControl button = new ProfitButtonControl();
 
         /// <summary>
         /// Provides easy access to the root frame of the Phone Application.

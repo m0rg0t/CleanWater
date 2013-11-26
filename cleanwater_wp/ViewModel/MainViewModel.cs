@@ -341,6 +341,7 @@ namespace cleanwater_wp.ViewModel
                 this.GeoCurrentRegionItem = this.RegionItems.FirstOrDefault();
             };
 
+            App.button.Open();
             this.Loading = false;
 
             return true;

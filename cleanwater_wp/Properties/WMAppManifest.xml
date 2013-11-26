@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.1">
-  <App xmlns="" ProductID="{b91f34ec-090a-4c99-a9aa-81714ad48d27}" Title="Вода в Москве" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="cleanwater_wp author" Description="Вода в Москве" Publisher="cleanwater_wp">
+  <App xmlns="" ProductID="{0d98d583-2003-420b-b187-3761538aaa17}" Title="Вода в Москве" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="cleanwater_wp author" Description="Вода в Москве" Publisher="cleanwater_wp">
     <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_GAMERSERVICES" />

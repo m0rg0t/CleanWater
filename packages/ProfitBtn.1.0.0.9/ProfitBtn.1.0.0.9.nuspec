@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>ProfitBtn</id>
+    <version>1.0.0.9</version>
+    <title>ProfitBtn</title>
+    <authors>hintsolutions</authors>
+    <owners>hintsolutions</owners>
+    <projectUrl>https://github.com/pizzabtn/pizzabtn-wp/</projectUrl>
+    <iconUrl>http://cs413224.vk.me/v413224656/3f89/2dCXEH-_tGE.jpg</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Profit Button is an interactive element that used to show custom content inside your application. If the button is tapped then the popup with Browser would open. The url in the Browser is set using settings on our server.
+
+http://probtn.com</description>
+    <releaseNotes />
+    <copyright />
+    <language />
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="5.0.6" />
+    </dependencies>
+  </metadata>
+</package>
